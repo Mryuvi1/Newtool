@@ -1,33 +1,17 @@
-from flask import Flask, render_template, request, redirect, url_for, session, flash import os
+from flask import Flask, render_template, request, jsonify, session, redirect, url_for
+from tools.token_generator import get_facebook_token
 
-app = Flask(name) app.secret_key = os.urandom(24)
+app = Flask(__name__)
+app.secret_key = 'your_secret_key_here'
 
-=== CONFIGURATION ===
+@app.route('/tool/token_generator', methods=['GET', 'POST'])
+def token_generator():
+    if 'logged_in' not in session:
+        return redirect(url_for('login'))
 
-ADMIN_PASSWORD = "yourpassword"  # Set your panel login password here APPROVAL_KEY = "UNIQUEKEY123"   # Set your approval key here
-
-=== ROUTES ===
-
-@app.route('/') def home(): if 'logged_in' in session: return redirect(url_for('dashboard')) return render_template('login.html')
-
-@app.route('/login', methods=['POST']) def login(): password = request.form.get('password') approval_key = request.form.get('approval_key')
-
-if password == ADMIN_PASSWORD and approval_key == APPROVAL_KEY:
-    session['logged_in'] = True
-    return redirect(url_for('dashboard'))
-else:
-    flash("Invalid password or approval key.")
-    return redirect(url_for('home'))
-
-@app.route('/dashboard') def dashboard(): if 'logged_in' not in session: return redirect(url_for('home')) return render_template('dashboard.html')
-
-@app.route('/logout') def logout(): session.clear() return redirect(url_for('home'))
-
-=== TOOL ROUTES ===
-
-@app.route('/tool/token_checker') def token_checker(): return render_template('tool_token_checker.html')
-
-You can add more tools in similar pattern
-
-if name == 'main': app.run(debug=True)
-
+    result = None
+    if request.method == 'POST':
+        cookies = request.form.get('cookies', '').strip()
+        if cookies:
+            result = get_facebook_token(cookies)
+    return render_template('tool_token_generator.html', result=result)
