@@ -6,7 +6,8 @@ app = Flask(__name__)
 app.secret_key = 'your_secret_key_here'
 
 @app.route('/tool/token_generator', methods=['GET', 'POST'])
-def login():
+def token_generator():
+    ...
     if request.method == 'POST':
         password = request.form.get('password')
         if password == 'DARKHUNTER':  # You can change this password
