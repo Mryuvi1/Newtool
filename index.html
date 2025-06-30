@@ -1,84 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <title>Facebook UID Finder</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f0f0f0;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    .container {
-      background: white;
-      padding: 30px;
-      border-radius: 12px;
-      text-align: center;
-      box-shadow: 0 0 10px rgba(0,0,0,0.15);
-      width: 400px;
-    }
-    input {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 15px;
-      font-size: 16px;
-    }
-    button {
-      padding: 10px 20px;
-      font-size: 16px;
-      background: #1877f2;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-    #output {
-      margin-top: 20px;
-      font-weight: bold;
-      word-break: break-word;
-    }
-  </style>
+    <title>Facebook UID Extractor</title>
+    <style>
+        body {
+            background-image: url("/static/https://i.postimg.cc/9fL0yLgj/a58f941bc7aaad40797dfe63fcaaa34e.jpg");
+            background-size: cover;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding-top: 100px;
+        }
+        input, button {
+            padding: 10px;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <h2>🔍 Facebook Profile UID Finder</h2>
-    <input type="text" id="fbLink" placeholder="Enter Facebook Profile URL" />
-    <button onclick="getUID()">Find UID</button>
-    <div id="output"></div>
-  </div>
-
-  <script>
-    async function getUID() {
-      const fbLink = document.getElementById("fbLink").value.trim();
-      const output = document.getElementById("output");
-
-      if (!fbLink.includes("facebook.com")) {
-        output.innerHTML = "❌ Please enter a valid Facebook URL.";
-        return;
-      }
-
-      output.innerHTML = "⏳ Checking UID...";
-
-      try {
-        const proxy = "https://api.allorigins.win/get?url=" + encodeURIComponent(fbLink);
-        const res = await fetch(proxy);
-        const data = await res.json();
-        const html = data.contents;
-
-        const match = html.match(/"entity_id":"(\d{6,20})"/);
-
-        if (match && match[1]) {
-          output.innerHTML = `✅ UID Found: <span style="color:green">${match[1]}</span>`;
-        } else {
-          output.innerHTML = "❌ UID not found. May be private profile.";
-        }
-      } catch (e) {
-        output.innerHTML = "⚠️ Error fetching profile.";
-      }
-    }
-  </script>
+    <h1>UID Extractor by 𝗟𝗘𝗚𝗘𝗡𝗗 𝗬𝗨𝗩𝗜𝗜 𝗜𝗡𝗦𝗜𝗗𝗘</h1>
+    <form method="POST">
+        <input type="text" name="fburl" placeholder="Paste Facebook profile/post URL" size="50" required>
+        <br>
+        <button type="submit">Get UID</button>
+    </form>
+    {% if uid %}
+        <h2>UID: {{ uid }}</h2>
+    {% endif %}
 </body>
 </html>
