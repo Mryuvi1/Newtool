@@ -9,7 +9,7 @@ app.secret_key = 'your_secret_key_here'
 def login():
     if request.method == 'POST':
         password = request.form.get('password')
-        if password == 'yuvi123':  # You can change this password
+        if password == 'DARKHUNTER':  # You can change this password
             session['logged_in'] = True
             return redirect(url_for('dashboard'))
     return render_template('login.html')
