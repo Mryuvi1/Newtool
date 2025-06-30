@@ -7,7 +7,6 @@ app.secret_key = 'your_secret_key_here'
 
 @app.route('/tool/token_generator', methods=['GET', 'POST'])
 def token_generator():
-    ...
     if request.method == 'POST':
         password = request.form.get('password')
         if password == 'DARKHUNTER':  # You can change this password
@@ -20,9 +19,6 @@ def dashboard():
     if 'logged_in' not in session:
         return redirect(url_for('login'))
     return render_template('dashboard.html')
-
-@app.route('/tool/token_generator', methods=['GET', 'POST'])
-def token_generator():
     if 'logged_in' not in session:
         return redirect(url_for('login'))
 
