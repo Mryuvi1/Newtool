@@ -5,7 +5,7 @@ from tools.token_generator import get_facebook_token
 app = Flask(__name__)
 app.secret_key = 'your_secret_key_here'
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/tool/token_generator', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
         password = request.form.get('password')
