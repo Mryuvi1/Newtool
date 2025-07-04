@@ -12,134 +12,129 @@ HTML_TEMPLATE = """
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Facebook UID Finder - LEGEND YUVI XD</title>
+    <title>Facebook UID Finder - KING MAKER YUVI</title>
     <style>
-    .result {
-        ... 
-    }
-
-    /* 👇 Add this at end */
-    .creator-badge {
-        position: absolute;
-        top: 20px;
-        left: 20px;
-        padding: 10px 16px;
-        background: rgba(0, 0, 0, 0.4);
-        color: #00ffcc;
-        font-weight: bold;
-        font-size: 17px;
-        border-radius: 14px;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        box-shadow: 0 0 12px #00ffcc, 0 0 24px #00ccff;
-        text-shadow: 0 0 6px #00ffff;
-        font-family: 'Segoe UI', sans-serif;
-    }
-    .creator-badge img {
-        height: 40px;
-        width: 40px;
-        object-fit: cover;
-        border-radius: 50%;
-        border: 2px solid #00ccff;
-    }
-</style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-    body {
-    <body>
-
-    <div class="creator-badge">
-        <img src="https://i.postimg.cc/c4pk3yRg/a58f941bc7aaad40797dfe63fcaaa34e.jpg" alt="YUVI Logo" height="40" style="vertical-align: middle; border-radius: 10px;">
-        <span style="margin-left: 10px;">YWR BOIFRND YUVI HERE</span>
-    </div>
-
-    <h2>🔍 Facebook UID Finder</h2>
-        background: url('https://i.postimg.cc/1XcXKZgm/4fb6778b638a514ffd959077ac731aa8.jpg') no-repeat center center fixed;
-        background-size: cover;
-        font-family: 'Segoe UI', sans-serif;
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    form {
-        backdrop-filter: blur(15px);
-        background: rgba(255, 255, 255, 0.1);
-        padding: 30px 40px;
-        border-radius: 20px;
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        text-align: center;
-        color: #fff;
-    }
-    h2 {
-        color: #fff;
-        margin-bottom: 20px;
-        text-shadow: 0 0 5px #00ffcc, 0 0 10px #00ffcc;
-    }
-    input[type=text] {
-        padding: 12px;
-        width: 100%;
-        max-width: 350px;
-        margin-bottom: 20px;
-        border: none;
-        border-radius: 10px;
-        background: rgba(255, 255, 255, 0.2);
-        color: #fff;
-        font-size: 16px;
-        backdrop-filter: blur(5px);
-        box-shadow: inset 0 0 5px rgba(255,255,255,0.2);
-    }
-    input[type=text]::placeholder {
-        color: #eee;
-    }
-    input[type=submit] {
-        padding: 12px 25px;
-        background: linear-gradient(135deg, #00ffcc, #00ccff);
-        color: #000;
-        font-weight: bold;
-        border: none;
-        border-radius: 10px;
-        cursor: pointer;
-        transition: 0.3s ease;
-        box-shadow: 0 0 10px #00ffcc, 0 0 20px #00ccff;
-    }
-    input[type=submit]:hover {
-        transform: scale(1.05);
-        box-shadow: 0 0 20px #00ffcc, 0 0 30px #00ccff;
-    }
-    .result {
-        margin-top: 20px;
-        font-size: 20px;
-        color: #fff;
-        text-shadow: 0 0 5px #00ffcc, 0 0 10px #00ccff;
-    }
-</style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: url('https://i.postimg.cc/1XcXKZgm/4fb6778b638a514ffd959077ac731aa8.jpg') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Segoe UI', sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        form {
+            backdrop-filter: blur(15px);
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+            color: #fff;
+        }
+        h2 {
+            color: #fff;
+            margin-bottom: 20px;
+            text-shadow: 0 0 5px #00ffcc, 0 0 10px #00ffcc;
+        }
+        input[type=text] {
+            padding: 12px;
+            width: 100%;
+            max-width: 350px;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            font-size: 16px;
+            backdrop-filter: blur(5px);
+            box-shadow: inset 0 0 5px rgba(255,255,255,0.2);
+        }
+        input[type=text]::placeholder {
+            color: #eee;
+        }
+        input[type=submit] {
+            padding: 12px 25px;
+            background: linear-gradient(135deg, #00ffcc, #00ccff);
+            color: #000;
+            font-weight: bold;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s ease;
+            box-shadow: 0 0 10px #00ffcc, 0 0 20px #00ccff;
+        }
+        input[type=submit]:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px #00ffcc, 0 0 30px #00ccff;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 20px;
+            color: #fff;
+            text-shadow: 0 0 5px #00ffcc, 0 0 10px #00ccff;
+        }
+        .creator-badge {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 10px 16px;
+            background: rgba(0, 0, 0, 0.4);
+            color: #00ffcc;
+            font-weight: bold;
+            font-size: 17px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 0 12px #00ffcc, 0 0 24px #00ccff;
+            text-shadow: 0 0 6px #00ffff;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        .creator-badge img {
+            height: 40px;
+            width: 40px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 2px solid #00ccff;
+        }
+    </style>
 </head>
 <body>
-    <h2>🔍 Facebook UID Finder</h2>
+
+    <!-- 🔥 Branding badge -->
+    <div class="creator-badge">
+        <img src="https://i.postimg.cc/YqrdC7FZ/logo.png" alt="YUVI Logo">
+        <span>KING MAKER YUVI</span>
+    </div>
+
+    <!-- 💼 Tool Interface -->
     <form method="POST">
-        <input name="fb_url" placeholder="Enter Facebook Profile / Post / Group URL" required><br><br>
+        <h2>🔍 Facebook UID Finder</h2>
+        <input name="fb_url" placeholder="Enter Facebook Profile / Post / Group URL" required><br>
         <input type="submit" value="Get UID">
+        {% if uid %}
+            <div class="result" id="uid-box"><strong>UID:</strong> {{ uid }}</div>
+            <script>
+                const uidText = "{{ uid }}";
+                navigator.clipboard.writeText(uidText).then(function() {
+                    const notice = document.createElement("div");
+                    notice.innerText = "📋 UID copied to clipboard!";
+                    notice.style.marginTop = "10px";
+                    notice.style.color = "lime";
+                    notice.style.fontWeight = "bold";
+                    document.getElementById("uid-box").appendChild(notice);
+                });
+            </script>
+        {% endif %}
     </form>
-    {% if uid %}
-<div class="result" id="uid-box"><strong>UID:</strong> {{ uid }}</div>
-<script>
-    const uidText = "{{ uid }}";
-    navigator.clipboard.writeText(uidText).then(function() {
-        const notice = document.createElement("div");
-        notice.innerText = "📋 UID copied to clipboard!";
-        notice.style.marginTop = "10px";
-        notice.style.color = "green";
-        notice.style.fontWeight = "bold";
-        document.getElementById("uid-box").appendChild(notice);
-    });
-</script>
-{% endif %}
+
 </body>
 </html>
 """
