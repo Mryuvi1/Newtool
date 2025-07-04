@@ -68,27 +68,38 @@ HTML_TEMPLATE = """
 """
 
 def extract_uid_from_url(url):
-    headers = {
-        'User-Agent': 'Mozilla/5.0'
-    }
     try:
-        response = requests.get(url, headers=headers, timeout=10)
+        if "facebook.com" not in url:
+            return "❌ Invalid Facebook URL"
+
+        headers = {
+            'User-Agent': 'Mozilla/5.0'
+        }
+
+        # Use m.facebook.com for simpler HTML
+        mobile_url = url.replace("www.facebook.com", "m.facebook.com").replace("facebook.com", "m.facebook.com")
+        response = requests.get(mobile_url, headers=headers, timeout=10)
+
         if response.status_code == 200:
-            # Try multiple patterns
+            html = response.text
             patterns = [
                 r'entity_id":"(\d+)"',
-                r'page_id=(\d+)',
                 r'"userID":"(\d+)"',
                 r'fb://profile/(\d+)',
-                r'\"groupID\":\"(\d+)\"'
+                r'page_id=(\d+)',
+                r'\"groupID\":\"(\d+)\"',
+                r'profile_id=(\d+)',
+                r'owner_id=(\d+)',
             ]
             for pattern in patterns:
-                match = re.search(pattern, response.text)
+                match = re.search(pattern, html)
                 if match:
                     return match.group(1)
-        return "UID not found ❌"
+            return "❌ UID not found in page source"
+        else:
+            return f"❌ Request failed with status {response.status_code}"
     except Exception as e:
-        return f"Error: {str(e)}"
+        return f"❌ Error: {str(e)}"
 
 @app.route("/", methods=["GET", "POST"])
 def index():
