@@ -12,7 +12,7 @@ HTML_TEMPLATE = """
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Facebook UID Finder - KING MAKER YUVI</title>
+    <title>Facebook UID Finder - 🩷𝐋𝐄𝐆𝐄𝐍𝐃𝐗𝐃 𝐘𝐔𝐕𝐈🪽</title>
     <style>
         * {
             margin: 0;
@@ -110,7 +110,7 @@ HTML_TEMPLATE = """
 
     <!-- 🔥 Branding badge -->
     <div class="creator-badge">
-        <img src="https://i.postimg.cc/YqrdC7FZ/logo.png" alt="YUVI Logo">
+        <img src="https://i.postimg.cc/c4pk3yRg/a58f941bc7aaad40797dfe63fcaaa34e.jpg" alt="YUVI Logo">
         <span>KING MAKER YUVI</span>
     </div>
 
