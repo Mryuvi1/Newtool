@@ -5,35 +5,50 @@ from flask import Flask, request, render_template_string
 
 app = Flask(__name__)
 
-# Minimal HTML test to verify route working
+# ✅ Your Facebook Cookie Here (get from browser dev tools > Application tab > Cookies)
+FB_COOKIE = "sb=lCRXaOOuEAI8jwj6vAhxZU8o;ps_l=1;ps_n=1;vpd=v1%3B1130x552x1.1751712560653687;pas=100059549485809%3ASOFoyggusW;wl_cbv=v2%3Bclient_version%3A2852%3Btimestamp%3A1750868437;dpr=1.2920383214950562;datr=LD1gaN36qbuLuFpo7ZjkMyN9;locale=en_GB;c_user=100059549485809;fr=1eVdlYyJ0pjiGSVe3.AWcMD1r2cJKoWtKwazaUH1JRdLP7CKHdzqBhrCG9ffeNstdIrqM.BoZyV4..AAA.0.0.BoZyV4.AWf7Hi2h444kAZrn94KqEwxi8Jo;xs=30%3A0natGunnQV5Dtw%3A2%3A1751590212%3A-1%3A-1%3A%3AAcWc-eAEQxwMlAh2A4JQnWRUkZAcTCTm8jRHOtiCcA;wd=991x2027;presence=C%7B%22lm3%22%3A%22g.10023169007731270%22%2C%22t3%22%3A%5B%5D%2C%22utc3%22%3A1751590274043%2C%22v%22%3A1%7D;"
+
 HTML_TEMPLATE = """
 <!DOCTYPE html>
 <html>
-  <head><title>Facebook UID Finder</title></head>
-  <body style="text-align: center; margin-top: 50px;">
+<head>
+    <title>Facebook UID Finder - KING MAKER YUVI</title>
+    <style>
+        body { background: #e1f5fe; font-family: sans-serif; text-align: center; padding-top: 60px; }
+        form { background: #ffffffcc; padding: 20px; display: inline-block; border-radius: 12px; }
+        input[type=text] { padding: 10px; width: 300px; border-radius: 5px; border: 1px solid #ccc; }
+        input[type=submit] { padding: 10px 20px; background-color: #4caf50; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        .result { margin-top: 20px; font-size: 18px; }
+    </style>
+</head>
+<body>
     <h2>🔍 Facebook UID Finder</h2>
     <form method="POST">
-      <input name="fb_url" style="width: 300px;" placeholder="Enter Facebook URL" required>
-      <br><br>
-      <button type="submit">Find UID</button>
+        <input name="fb_url" placeholder="Enter Facebook Profile / Post / Group URL" required><br><br>
+        <input type="submit" value="Get UID">
     </form>
     {% if uid %}
-      <p><strong>UID:</strong> {{ uid }}</p>
+    <div class="result"><strong>UID:</strong> {{ uid }}</div>
     {% endif %}
-  </body>
+</body>
 </html>
 """
 
 def extract_uid_from_url(url):
+    headers = {
+        'User-Agent': 'Mozilla/5.0',
+        'Cookie': FB_COOKIE
+    }
+
     try:
         if "facebook.com" not in url:
-            return "Invalid Facebook URL"
+            return "❌ Invalid Facebook URL"
 
-        headers = {'User-Agent': 'Mozilla/5.0'}
-        mobile_url = url.replace("www.facebook.com", "m.facebook.com").replace("facebook.com", "m.facebook.com")
-        res = requests.get(mobile_url, headers=headers, timeout=10)
+        url = url.replace("m.facebook.com", "www.facebook.com")
+        response = requests.get(url, headers=headers, timeout=10)
 
-        if res.status_code == 200:
+        if response.status_code == 200:
+            html = response.text
             patterns = [
                 r'entity_id":"(\d+)"',
                 r'"userID":"(\d+)"',
@@ -44,14 +59,14 @@ def extract_uid_from_url(url):
                 r'owner_id=(\d+)',
             ]
             for pattern in patterns:
-                match = re.search(pattern, res.text)
+                match = re.search(pattern, html)
                 if match:
                     return match.group(1)
-            return "UID not found"
+            return "❌ UID not found"
         else:
-            return f"Failed to fetch ({res.status_code})"
+            return f"❌ HTTP Error: {response.status_code}"
     except Exception as e:
-        return f"Error: {e}"
+        return f"❌ Error: {str(e)}"
 
 @app.route("/", methods=["GET", "POST"])
 def index():
