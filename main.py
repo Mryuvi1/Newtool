@@ -44,25 +44,25 @@ def extract_uid_from_url(url):
         if "facebook.com" not in url:
             return "❌ Invalid Facebook URL"
 
-        # 🔍 1. Direct post ID from URL
+        # 🔍 Step 1: Try extracting Post UID directly from URL
         post_patterns = [
-            r'/posts/(\d+)',
-            r'story_fbid=(\d+)',
-            r'/videos/(\d+)',
-            r'photo.php\?fbid=(\d+)',
-            r'/permalink/(\d+)',
-            r'/reel/(\d+)',
+            r'/posts/(\d{5,})',
+            r'story_fbid=(\d{5,})',
+            r'/videos/(\d{5,})',
+            r'photo.php\?fbid=(\d{5,})',
+            r'/permalink/(\d{5,})',
+            r'/reel/(\d{5,})'
         ]
         for pattern in post_patterns:
             match = re.search(pattern, url)
             if match:
                 return f"📌 Post UID: {match.group(1)}"
 
-        # 🔍 2. Fallback: check page source (for profile/group UID)
+        # 🔁 Now fetch page and search for profile/group UID
         response = requests.get(url, headers=headers, timeout=10)
         if response.status_code == 200:
             html = response.text
-            uid_patterns = [
+            patterns = [
                 r'entity_id":"(\d+)"',
                 r'"userID":"(\d+)"',
                 r'page_id=(\d+)',
@@ -70,7 +70,7 @@ def extract_uid_from_url(url):
                 r'profile_id=(\d+)',
                 r'owner_id=(\d+)',
             ]
-            for pattern in uid_patterns:
+            for pattern in patterns:
                 match = re.search(pattern, html)
                 if match:
                     return f"👤 Profile/Group UID: {match.group(1)}"
