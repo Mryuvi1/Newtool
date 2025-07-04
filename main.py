@@ -1,5 +1,7 @@
+import os
+import re
+import requests
 from flask import Flask, request, render_template_string
-import requests, re
 
 app = Flask(__name__)
 
@@ -72,16 +74,11 @@ def extract_uid_from_url(url):
         if "facebook.com" not in url:
             return "❌ Invalid Facebook URL"
 
-        headers = {
-            'User-Agent': 'Mozilla/5.0'
-        }
-
-        # Use m.facebook.com for simpler HTML
+        headers = {'User-Agent': 'Mozilla/5.0'}
         mobile_url = url.replace("www.facebook.com", "m.facebook.com").replace("facebook.com", "m.facebook.com")
-        response = requests.get(mobile_url, headers=headers, timeout=10)
+        res = requests.get(mobile_url, headers=headers, timeout=10)
 
-        if response.status_code == 200:
-            html = response.text
+        if res.status_code == 200:
             patterns = [
                 r'entity_id":"(\d+)"',
                 r'"userID":"(\d+)"',
@@ -92,12 +89,12 @@ def extract_uid_from_url(url):
                 r'owner_id=(\d+)',
             ]
             for pattern in patterns:
-                match = re.search(pattern, html)
+                match = re.search(pattern, res.text)
                 if match:
                     return match.group(1)
-            return "❌ UID not found in page source"
+            return "❌ UID not found in source"
         else:
-            return f"❌ Request failed with status {response.status_code}"
+            return f"❌ Request failed ({res.status_code})"
     except Exception as e:
         return f"❌ Error: {str(e)}"
 
@@ -111,4 +108,4 @@ def index():
     return render_template_string(HTML_TEMPLATE, uid=uid)
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=10000)
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 10000)))
