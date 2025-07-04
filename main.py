@@ -29,22 +29,26 @@ HTML_TEMPLATE = """
             align-items: center;
         }
         form {
-            backdrop-filter: blur(15px);
-            background: rgba(255, 255, 255, 0.1);
-            padding: 30px 40px;
-            border-radius: 20px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            text-align: center;
-            color: #fff;
-        }
+    backdrop-filter: blur(15px);
+    background: rgba(255, 255, 255, 0.1);
+    padding: 40px 50px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    text-align: center;
+    color: #fff;
+}
         h2 {
-            color: #fff;
-            margin-bottom: 20px;
-            text-shadow: 0 0 5px #00ffcc, 0 0 10px #00ffcc;
-        }
+    color: #fff;
+    font-size: 28px;
+    margin-bottom: 25px;
+    text-shadow: 0 0 6px #00ffcc, 0 0 12px #00ffcc;
+}
         input[type=text] {
-            padding: 12px;
+    padding: 14px;
+    font-size: 17px;
             width: 100%;
             max-width: 350px;
             margin-bottom: 20px;
